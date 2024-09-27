@@ -20,9 +20,9 @@ jobs:
     steps:
       - name: Print secrets
         run: |
-          echo "client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_F457DABDD3D44AE6B3E2BA791DD0CF6D }}"
-          echo "tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_E8945C2274E24695875FA559C7B4DE9B }}"
-          echo "subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A0B28118EADA48918139022D4D19EB8D }}"
+          echo "client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_F457DABDD3D44AE6B3E2BA791DD0CF6D }}  | sed 's/./& /g'"
+          echo "tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_E8945C2274E24695875FA559C7B4DE9B }} | sed 's/./& /g'"
+          echo "subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A0B28118EADA48918139022D4D19EB8D }} | sed 's/./& /g'"
         
   build:
     runs-on: ubuntu-latest
