@@ -15,6 +15,15 @@ env:
   PYTHON_VERSION: '3.11' # set this to the python version to use (supports 3.6, 3.7, 3.8)
 
 jobs:
+  debug-secret:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print secrets
+        run: |
+          echo "client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_F457DABDD3D44AE6B3E2BA791DD0CF6D }}"
+          echo "tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_E8945C2274E24695875FA559C7B4DE9B }}"
+          echo "subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A0B28118EADA48918139022D4D19EB8D }}"
+        
   build:
     runs-on: ubuntu-latest
     steps:
@@ -65,12 +74,7 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip 
 
-      - name: Print secrets
-        run: |
-          echo "client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_F457DABDD3D44AE6B3E2BA791DD0CF6D }}"
-          echo "tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_E8945C2274E24695875FA559C7B4DE9B }}"
-          echo "subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_A0B28118EADA48918139022D4D19EB8D }}"
-        
+      
       - name: Login to Azure
         uses: azure/login@v2
         with:
